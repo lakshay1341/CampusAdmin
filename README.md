@@ -161,12 +161,3 @@ The frontend is built using HTML and Bootstrap for styling. The main functionali
 ## Conclusion
 
 The CampusAdmin project provides a comprehensive solution for managing student records efficiently using modern web technologies. With a clear separation between frontend and backend components, it ensures scalability and maintainability moving forward.
-
----
-
-This documentation serves as a guide for understanding, setting up, and utilizing the CampusAdmin project effectively.
-
-Citations:
-[1] https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/47368608/43be5da6-7f5f-458a-8e0f-89f8638f14d5/paste.txt
-[2] https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/47368608/815494f2-f041-4512-a1d7-9b30b395d834/paste.txt
-[3] https://github.com/lakshay1341/CampusAdmin
