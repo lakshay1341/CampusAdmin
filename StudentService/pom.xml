@@ -12,7 +12,7 @@
 	</parent>
 
 	<groupId>in.lakshay</groupId>
-	<artifactId>StudentService</artifactId> <!-- Change artifactId to StudentService -->
+	<artifactId>CampusAdmin</artifactId> <!-- Change artifactId to StudentService -->
 	<version>1.0</version>
 	<name>CampusAdmin</name> <!-- Updated project name -->
 	<description>Demo project for Student Management in Spring Boot</description>
