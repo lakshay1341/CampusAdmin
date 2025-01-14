@@ -11,10 +11,10 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
-	<groupId>in.mrityunjay</groupId>
+	<groupId>in.lakshay</groupId>
 	<artifactId>StudentService</artifactId> <!-- Change artifactId to StudentService -->
 	<version>1.0</version>
-	<name>StudentService</name> <!-- Updated project name -->
+	<name>CampusAdmin</name> <!-- Updated project name -->
 	<description>Demo project for Student Management in Spring Boot</description>
 
 	<properties>
@@ -100,13 +100,6 @@
 
 	<dependencyManagement>
 		<dependencies>
-			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>${spring-cloud.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
 			<dependency>
 				<groupId>de.codecentric</groupId>
 				<artifactId>spring-boot-admin-dependencies</artifactId>
