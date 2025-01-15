@@ -18,6 +18,7 @@ CampusAdmin is a web application designed to manage student information efficien
 - **Backend**: Spring Boot
 - **Database**: MySQL
 - **API Communication**: RESTful APIs
+- **API Documentation**: Swagger UI
 
 ## Installation Instructions
 1. **Clone the Repository**
@@ -37,146 +38,60 @@ CampusAdmin is a web application designed to manage student information efficien
    ```
    - The application will start on `http://localhost:8080`.
 
-4. **Access the Frontend**
-   - Open your web browser and go to `http://localhost:8080`.
+4. **Access the Swagger UI**
+   - Open your web browser and go to:
+     ```
+     http://localhost:8080/swagger-ui.html
+     ```
+   - Use this interface to explore and test the APIs.
 
-## API Documentation
+## API Documentation (via Swagger UI)
 
-### Base URL
-```
-http://localhost:8080/api/student
-```
+The API documentation for CampusAdmin is auto-generated and accessible through Swagger UI. It provides an interactive interface to test and understand all available endpoints.
 
-### Endpoints
+### How to Use Swagger UI
+1. Navigate to `http://localhost:8080/swagger-ui.html`.
+2. Expand each API endpoint group to view detailed documentation.
+3. Use the "Try it out" button to test API endpoints directly from the browser.
+4. Review responses for each endpoint, including HTTP status codes and data structures.
 
-#### 1. Create Student
-- **URL**: `/create`
-- **Method**: `POST`
-- **Request Body**:
-```json
-{
-    "studentName": "John Doe",
-    "studentAge": 20,
-    "studentGender": "Male",
-    "studentDept": "Computer Science",
-    "studentAddr": "123 Main St"
+### Example Endpoints (Available in Swagger UI)
+- **POST /api/student/create**: Add a new student.
+- **PUT /api/student/modify**: Update student details.
+- **GET /api/student/find/{id}**: Find a student by ID.
+- **DELETE /api/student/remove/{id}**: Delete a student by ID.
+- **GET /api/student/all**: View all students with pagination.
+
+## Swagger Configuration
+The Swagger UI is configured using the `SwaggerConfig` class. Below is the code snippet:
+```java
+@Configuration
+@EnableSwagger2
+public class SwaggerConfig {
+    @Bean
+    public Docket createDocket() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("in.lakshay"))
+                .paths(PathSelectors.ant("/api/**"))
+                .build()
+                .apiInfo(apiInfo());
+    }
+
+    private ApiInfo apiInfo() {
+        return new ApiInfo(
+                "Student Service",
+                "API documentation for Student CRUD operations",
+                "1.0",
+                "http://example.com",
+                new Contact("Lakshay", "http://example.com", "contact@example.com"),
+                "MIT License",
+                "http://example.com/license",
+                Collections.emptyList());
+    }
 }
-```
-- **Response**:
-  - Status Code: `201 Created` on success.
-  - Status Code: `400 Bad Request` if validation fails.
-
-#### 2. Update Student
-- **URL**: `/modify`
-- **Method**: `PUT`
-- **Request Body**:
-```json
-{
-    "studentId": 1,
-    "studentName": "John Smith",
-    "studentAge": 21,
-    "studentGender": "Male",
-    "studentDept": "Computer Science",
-    "studentAddr": "123 Main St"
-}
-```
-- **Response**:
-  - Status Code: `200 OK` on success.
-  - Status Code: `404 Not Found` if the student does not exist.
-
-#### 3. Find Student by ID
-- **URL**: `/find/{id}`
-- **Method**: `GET`
-- **Response**:
-```json
-{
-    "studentId": 1,
-    "studentName": "John Doe",
-    "studentAge": 20,
-    "studentGender": "Male",
-    "studentDept": "Computer Science",
-    "studentAddr": "123 Main St"
-}
-```
-- **Status Codes**:
-  - `200 OK` on success.
-  - `404 Not Found` if the student does not exist.
-
-#### 4. Delete Student
-- **URL**: `/remove/{id}`
-- **Method**: `DELETE`
-- **Response**:
-  - Status Code: `204 No Content` on success.
-  - Status Code: `404 Not Found` if the student does not exist.
-
-#### 5. Get All Students (With Pagination)
-- **URL**: `/all` OR `/all?page={page_number}&size={number_of_students}`
-- **Method**: `GET`
-- **Query Parameters**:
-  - `page`: The page number for pagination (default: 0).
-  - `size`: The number of students per page (default: 10).
-  
-- **Response**:
-```json
-{
-    "students": [
-        {
-            "studentId": 1,
-            "studentName": "John Doe",
-            "studentAge": 20,
-            "studentGender": "Male",
-            "studentDept": "Computer Science",
-            "studentAddr": "123 Main St"
-        },
-        ...
-    ],
-    "currentPage": 0,
-    "totalItems": 100,
-    "totalPages": 10
-}
-```
-- **Status Code**:
-  - `200 OK` on success.
-
-#### 6. Update Student Name by ID
-- **URL**: `/modify/name/{id}/{name}`
-- **Method**: `PATCH`
-- **Response**:
-  - Status Code: `200 OK` on success.
-  - Status Code: `404 Not Found` if the student does not exist.
-
-## Frontend Implementation Overview
-
-The frontend is built using HTML and Bootstrap for styling. The main functionalities include forms for adding and updating students, as well as tables for displaying student data.
-
-### Key Components
-
-1. **Student Form**
-   - Allows users to input student details for creation or updates.
-
-2. **Update Form**
-   - Specifically designed to update an existing student's name by ID.
-
-3. **Find Form**
-   - Enables users to search for students by their ID.
-
-4. **Student Table with Pagination**
-   - Displays all students with options to edit or delete each record. Pagination support is included to manage large datasets efficiently.
-
-### Example Code Snippet (Frontend)
-```html
-<form id="studentForm">
-    <input type="hidden" id="studentId">
-    <div class="row g-3">
-        <div class="col-md-6">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" required>
-        </div>
-        ...
-    </div>
-</form>
 ```
 
 ## Conclusion
 
-The CampusAdmin project provides a comprehensive solution for managing student records efficiently using modern web technologies. With the newly implemented pagination feature, users can now view large sets of student data more effectively. The clear separation between frontend and backend components ensures scalability and maintainability moving forward.
+The CampusAdmin project provides a comprehensive solution for managing student records efficiently using modern web technologies. With the integration of Swagger UI, API testing and documentation have become seamless, enhancing the overall development and user experience.
