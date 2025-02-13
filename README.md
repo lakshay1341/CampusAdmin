@@ -62,36 +62,6 @@ The API documentation for CampusAdmin is auto-generated and accessible through S
 - **DELETE /api/student/remove/{id}**: Delete a student by ID.
 - **GET /api/student/all**: View all students with pagination.
 
-## Swagger Configuration
-The Swagger UI is configured using the `SwaggerConfig` class. Below is the code snippet:
-```java
-@Configuration
-@EnableSwagger2
-public class SwaggerConfig {
-    @Bean
-    public Docket createDocket() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .select()
-                .apis(RequestHandlerSelectors.basePackage("in.lakshay"))
-                .paths(PathSelectors.ant("/api/**"))
-                .build()
-                .apiInfo(apiInfo());
-    }
-
-    private ApiInfo apiInfo() {
-        return new ApiInfo(
-                "Student Service",
-                "API documentation for Student CRUD operations",
-                "1.0",
-                "http://example.com",
-                new Contact("Lakshay", "http://example.com", "contact@example.com"),
-                "MIT License",
-                "http://example.com/license",
-                Collections.emptyList());
-    }
-}
-```
-
 ## Conclusion
 
 The CampusAdmin project provides a comprehensive solution for managing student records efficiently using modern web technologies. With the integration of Swagger UI, API testing and documentation have become seamless, enhancing the overall development and user experience.
